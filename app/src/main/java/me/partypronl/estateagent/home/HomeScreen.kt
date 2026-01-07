@@ -1,6 +1,8 @@
 package me.partypronl.estateagent.home
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetState
@@ -57,12 +59,30 @@ private fun Content(
         onClickCloseMap = onClickCloseMap,
     )
 
+    AnimatedVisibilityNewListingsSection(
+        visible = sheetState.targetValue == SheetValue.Expanded,
+    )
+
     HomeShortcuts(
         modifier = Modifier.padding(top = 8.dp),
         onClickOpenSearches = {}, // TODO
         onClickOpenTimeToReact = {}, // TODO
         onClickOpenWaitingForReaction = {}, // TODO
         onClickOpenHistory = {} // TODO
+    )
+}
+
+@Composable
+private fun ColumnScope.AnimatedVisibilityNewListingsSection(
+    visible: Boolean,
+    modifier: Modifier = Modifier,
+) = AnimatedVisibility(
+    visible = visible,
+    modifier = modifier,
+) {
+    HomeNewListingsSection(
+        onClick = {}, // TODO
+        modifier = Modifier.padding(top = 20.dp),
     )
 }
 

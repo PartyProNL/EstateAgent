@@ -1,7 +1,6 @@
 package me.partypronl.estateagent.generic.composable
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
@@ -17,8 +16,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -28,7 +25,7 @@ import me.partypronl.estateagent.root.AgentStatusBar
 @Composable
 fun EARootSheet(
     modifier: Modifier = Modifier,
-    sheetPeekHeight: Dp = 160.dp,
+    sheetPeekHeight: Dp = 240.dp,
     sheetState: SheetState = rememberStandardBottomSheetState(
         initialValue = SheetValue.Expanded,
         skipHiddenState = true,

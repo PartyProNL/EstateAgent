@@ -9,4 +9,5 @@
     <string name="home_shortcut_react">React</string>
     <string name="home_shortcut_waiting">Waiting</string>
     <string name="home_shortcut_history">History</string>
+    <string name="home_new_listings_start_alt">Explore new listings</string>
 </resources>
