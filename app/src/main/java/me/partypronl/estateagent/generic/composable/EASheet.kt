@@ -1,8 +1,13 @@
 package me.partypronl.estateagent.generic.composable
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -14,7 +19,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue
-import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
@@ -34,24 +38,23 @@ fun EASheet(
     ),
     scaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(bottomSheetState = sheetState),
     sheetContainerColor: Color = MaterialTheme.colorScheme.surfaceContainerLow,
-    content: @Composable () -> Unit,
+    content: @Composable ColumnScope.(dragHandleTopPadding: Dp) -> Unit,
 ) = BottomSheetScaffold(
     scaffoldState = scaffoldState,
     sheetContent = {
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .padding(top = 4.dp)
-                .padding(horizontal = 24.dp)
-        ) {
-            content()
+        Box {
+            Column(modifier = Modifier.fillMaxHeight()) {
+                content(20.dp)
+            }
+
+            DragHandle()
         }
     },
     sheetPeekHeight = sheetPeekHeight,
     containerColor = Color.Transparent,
     sheetContainerColor = sheetContainerColor,
     sheetShape = RoundedCornerShape(36.dp),
-    sheetDragHandle = { DragHandle() },
+    sheetDragHandle = null,
     modifier = modifier.statusBarsPadding(),
 ) {
     // Empty on purpose, since we want to see the map underneath
@@ -61,16 +64,22 @@ fun EASheet(
 @Composable
 private fun DragHandle(
     modifier: Modifier = Modifier
-) = Surface(
-    modifier = modifier.padding(vertical = 8.dp),
-    color = MaterialTheme.colorScheme.surfaceContainerHigh,
-    shape = CircleShape,
+) = Row(
+    horizontalArrangement = Arrangement.Center,
+    modifier = modifier
+        .fillMaxWidth()
+        .padding(vertical = 8.dp),
 ) {
     Box(
-        modifier = Modifier.size(
-            width = 76.dp,
-            height = 4.dp,
-        )
+        modifier = Modifier
+            .background(
+                color = MaterialTheme.colorScheme.surfaceContainerHigh,
+                shape = CircleShape,
+            )
+            .size(
+                width = 76.dp,
+                height = 4.dp,
+            ),
     )
 }
 

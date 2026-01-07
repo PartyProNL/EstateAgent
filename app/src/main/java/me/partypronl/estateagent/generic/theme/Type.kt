@@ -28,6 +28,13 @@ val Typography = Typography(
         lineHeight = 17.sp,
         letterSpacing = 0.41.sp
     ),
+    bodySmall = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp,
+        lineHeight = 15.sp,
+        letterSpacing = 0.41.sp
+    ),
     titleSmall = TextStyle(
         fontFamily = Inter,
         fontWeight = FontWeight.Bold,
@@ -35,4 +42,11 @@ val Typography = Typography(
         lineHeight = 19.sp,
         letterSpacing = 0.41.sp
     ),
+    labelSmall = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 12.sp,
+        lineHeight = 15.sp,
+        letterSpacing = 0.41.sp
+    )
 )

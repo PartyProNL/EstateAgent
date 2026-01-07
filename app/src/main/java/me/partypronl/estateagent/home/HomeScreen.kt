@@ -7,9 +7,11 @@ import androidx.compose.material3.SheetValue
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import me.partypronl.estateagent.R
+import me.partypronl.estateagent.generic.composable.EARootSheet
 import me.partypronl.estateagent.generic.composable.EASheet
 import me.partypronl.estateagent.generic.composable.PrimarySheetHeader
 import me.partypronl.estateagent.generic.composable.button.EAIconButton
@@ -44,13 +46,16 @@ private fun Content(
     onClickOpenMap: () -> Unit,
     onClickCloseMap: () -> Unit,
     modifier: Modifier = Modifier,
-) = EASheet(
+) = EARootSheet(
     sheetState = sheetState,
     modifier = modifier,
 ) {
     PrimarySheetHeader(
-        title = "EstateAgent",
-        subtitle = "4 new homes found",
+        title = stringResource(R.string.home_title),
+        subtitle = stringResource(
+            R.string.home_subtitle,
+            4.toString(), // TODO
+        ),
         leadingIcon = R.drawable.ic_robot,
         actions = {
             Crossfade(
@@ -59,13 +64,13 @@ private fun Content(
                 if (expanded) {
                     EAIconButton(
                         icon = R.drawable.ic_search_map,
-                        contentDescription = "Map",
+                        contentDescription = stringResource(R.string.home_open_map_alt),
                         onClick = onClickOpenMap,
                     )
                 } else {
                     EAIconButton(
                         icon = R.drawable.ic_arrow_up,
-                        contentDescription = "Close map",
+                        contentDescription = stringResource(R.string.home_close_map_alt),
                         onClick = onClickCloseMap,
                     )
                 }
@@ -73,7 +78,7 @@ private fun Content(
 
             EAIconButton(
                 icon = R.drawable.ic_settings,
-                contentDescription = "Settings",
+                contentDescription = stringResource(R.string.home_open_settings_alt),
                 onClick = {}, // TODO Open settings
             )
         }
