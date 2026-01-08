@@ -4,7 +4,9 @@ import java.util.UUID
 
 data class Listing(
     val id: UUID,
-    val name: String,
+    val address: String,
+    val postalCode: String,
+    val imageUrls: List<String>,
     // Address and everything
     // Address should probably act as an ID
     // Properties system, for easier merging

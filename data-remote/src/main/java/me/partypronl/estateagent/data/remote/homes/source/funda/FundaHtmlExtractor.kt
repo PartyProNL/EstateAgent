@@ -16,7 +16,9 @@ class FundaHtmlExtractor {
 
         return Listing(
             id = UUID.randomUUID(),
-            name = document.selectFirst(AddressSelector)?.text() ?: throw ExtractionException("Missing address")
+            address = document.selectFirst(AddressSelector)?.text() ?: throw ExtractionException("Missing address"),
+            postalCode = "1234AB",
+            imageUrls = emptyList(),
         )
     }
 

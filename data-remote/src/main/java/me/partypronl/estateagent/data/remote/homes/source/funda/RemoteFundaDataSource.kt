@@ -22,7 +22,7 @@ class RemoteFundaDataSource(
             htmlExtractor.extractListing(listingHtml)
         }
         listings.forEach {
-            println("Found listing with name ${it.name}")
+            println("Found listing with name ${it.address}")
         }
 
         return emptyList()

@@ -15,7 +15,7 @@ class SyncListings(
         // TODO save new ones to database, send notification
 
         merged.forEach {
-            println("Found home ${it.name}")
+            println("Found home ${it.address} ${it.postalCode}")
         }
     }
 }
