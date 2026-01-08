@@ -8,10 +8,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import me.partypronl.estateagent.R
@@ -33,6 +35,12 @@ fun HomeScreen(
 ) {
     val sheetState = rememberDefaultSheetState()
     viewModel.events.HandleEvents(sheetState)
+
+    LaunchedEffect(sheetState.currentValue) {
+        if (sheetState.currentValue == SheetValue.PartiallyExpanded) {
+            viewModel.onMapOpened()
+        }
+    }
 
     Content(
         sheetState = sheetState,
