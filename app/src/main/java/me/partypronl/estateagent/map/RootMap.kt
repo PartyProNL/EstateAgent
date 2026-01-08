@@ -121,7 +121,7 @@ private fun EventFlow<RootMapNavigation>.HandleNavigation(
                         /* latLng = */ LatLng(it.lat, it.lon),
                         /* zoom = */ it.zoom.getGoogleZoom(),
                     ),
-                    durationMs = 3000,
+                    durationMs = 2000,
                 )
             }
         }

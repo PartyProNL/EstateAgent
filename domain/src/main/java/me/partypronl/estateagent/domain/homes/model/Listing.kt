@@ -10,4 +10,7 @@ data class Listing(
     // Address and everything
     // Address should probably act as an ID
     // Properties system, for easier merging
-)
+) {
+
+    val effectiveId = "$address $postalCode"
+}

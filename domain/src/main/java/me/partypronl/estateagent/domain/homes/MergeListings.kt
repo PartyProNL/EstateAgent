@@ -7,8 +7,22 @@ import org.koin.core.annotation.Factory
 class MergeListings {
 
     operator fun invoke(listings: List<Listing>): List<Listing> {
-        // TODO
-        // Look for duplicate IDs, and combine all properties
         return listings
+            .groupBy { it.effectiveId }
+            .values
+            .map { grouped ->
+                grouped.reduce { acc, listing ->
+                    invoke(acc, listing)
+                }
+            }
+    }
+
+    operator fun invoke(first: Listing, second: Listing): Listing {
+        return Listing(
+            id = first.id,
+            address = first.address,
+            postalCode = second.address,
+            imageUrls = (first.imageUrls + second.imageUrls).distinct(),
+        )
     }
 }

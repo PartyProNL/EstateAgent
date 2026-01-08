@@ -101,6 +101,8 @@ private fun Content(
     }
 }
 
+// TODO Animate this based on sheet extension percentage instead?
+
 @Composable
 private fun ColumnScope.AnimatedVisibilityNewListingsSection(
     imageUrls: List<String>,

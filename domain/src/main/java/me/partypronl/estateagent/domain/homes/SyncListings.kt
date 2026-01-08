@@ -8,26 +8,17 @@ import org.koin.core.annotation.Factory
 class SyncListings(
     private val getListings: GetListings,
     private val mergeListings: MergeListings,
+    private val mergeIntoHomes: MergeIntoHomes,
     private val repository: HomesRepository,
 ) {
 
     suspend operator fun invoke() {
         val listings = getListings()
         val merged = mergeListings(listings)
-
-        val homes = merged.map {
-            Home(
-                listing = it,
-                state = Home.State.AwaitingRating,
-            )
-        }
+        val homes = mergeIntoHomes(merged)
 
         repository.saveHomes(homes)
 
-        // TODO send notification
-
-        merged.forEach {
-            println("Found home ${it.address} ${it.postalCode}")
-        }
+        // TODO Status bar updates
     }
 }
